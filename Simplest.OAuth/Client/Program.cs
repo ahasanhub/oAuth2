@@ -15,6 +15,20 @@ namespace Client
         {
             var response = GetClientToken();
             CallApi(response);
+
+            response = GetUserToken();
+            CallApi(response);
+            Console.ReadLine();
+        }
+
+        private static TokenResponse GetUserToken()
+        {
+            var client = new TokenClient(
+                "http://localhost:5000/connect/token",
+                "carbon",
+                "21B5F798-BE55-42BC-8AA8-0025B903DC3B");
+
+            return client.RequestResourceOwnerPasswordAsync("ahasan", "123456", "api1").Result;
         }
 
         private static void CallApi(TokenResponse response)
@@ -25,7 +39,7 @@ namespace Client
             var ss=client.GetStringAsync("http://localhost:1480/test").Result;
             Console.WriteLine(client.GetStringAsync("http://localhost:1480/test").Result);
             Console.WriteLine("end api call.....");
-            Console.ReadLine();
+            
         }
 
         private static TokenResponse GetClientToken()

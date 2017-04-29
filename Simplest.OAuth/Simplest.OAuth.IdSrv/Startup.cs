@@ -20,7 +20,7 @@ namespace Simplest.OAuth.IdSrv
                          
                          .UseInMemoryClients(Clients.Get())
                          .UseInMemoryScopes(Scopes.Get())
-                         .UseInMemoryUsers(new List<InMemoryUser>()),
+                         .UseInMemoryUsers(Users.Get()),
                 RequireSsl = false
             };
             app.UseIdentityServer(oprions);

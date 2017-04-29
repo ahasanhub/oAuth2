@@ -15,11 +15,25 @@ namespace Apis.Controllers
         public IHttpActionResult Get()
         {
             var calller = User as ClaimsPrincipal;
-            return Json(new
+            var subjectClaim = calller?.FindFirst("sub");
+            if (subjectClaim!=null)
             {
-                message="this is ok",
-                client=calller?.FindFirst("client_id").Value
-            });
+                return Json(new
+                {
+                    message = "ok user",
+                    client = calller?.FindFirst("client_id").Value,
+                    subject=subjectClaim.Value
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    message = "ok Computer",
+                    client = calller?.FindFirst("client_id").Value
+                });
+            }
+            
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Simplest.OAuth.IdSrv
         {
             return new List<Client>
             {
+                //No human involved
                 new Client
                 {
                     ClientName = "Silicon-only Client",
@@ -23,6 +24,24 @@ namespace Simplest.OAuth.IdSrv
                     ClientSecrets = new List<Secret>
                     {
                         new Secret("F621F470-9731-4A25-80EF-67A6F7C5F4B8".Sha256())
+                    }
+                    ,
+                    AllowedScopes = new List<string>
+                    {
+                        "api1"
+                    }
+                },
+                 //Human is involved
+                new Client
+                {
+                    ClientName = "Silicon on behalf of Carbon Client",
+                    ClientId = "carbon",
+                    Enabled = true,
+                    AccessTokenType = AccessTokenType.Reference,
+                    Flow = Flows.ResourceOwner,
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("21B5F798-BE55-42BC-8AA8-0025B903DC3B".Sha256())
                     }
                     ,
                     AllowedScopes = new List<string>
