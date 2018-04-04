@@ -15,7 +15,9 @@ namespace SimpleIdentityServer4.Configurations
                 new Client
                 {
                     ClientId = "resClient",
-                    ClientSecrets = new List<Secret>{new Secret("topsecret".Sha256())}
+                    ClientSecrets = new List<Secret>{new Secret("topsecret".Sha256())},
+                    AllowedScopes = new List<string>{ "myapi" },
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword
                 }
             };
         }

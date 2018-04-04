@@ -6,13 +6,13 @@ using IdentityServer4.Models;
 
 namespace SimpleIdentityServer4.Configurations
 {
-    public class Scopes
+    public class ApiResources
     {
-        public static List<Scope> GetScopes()
+        public static IEnumerable<ApiResource> GetApiResources()
         {
-            return new List<Scope>
+            return new List<ApiResource>
             {
-                new Scope{Name = "myapi",Description = "My sample api"}
+                new ApiResource("myapi", "My API")
             };
         }
     }
